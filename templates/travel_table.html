@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="../static/travel_table.js"></script>
+<script src="../static/travel_table_style.css"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            {% include "sidebar.html" %}
+        </div>
+        <div class="col-9">
+            <button class="btn btn-primary btn-sm" id="btn-add"><i class="fas fa-plus"></i></button>
+            <table class="table table-hover" id="travelTable">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th class="col-name">Name</th>
+                        <th class="col-menu">Menu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for travel in travels %}
+                    <tr data-id="{{ travel.id }}">
+                        <td class="view-mode">{{ travel.name }}</td>
+                        <td>
+                            <button class="btn btn-primary btn-sm btn-edit"><i class="fas fa-edit"></i></button>
+                            <button class="btn btn-success btn-sm btn-save edit-mode" style="display: none;"><i
+                                    class="fas fa-save"></i></button>
+                            <button class="btn btn-secondary btn-sm btn-cancel edit-mode" style="display: none;"><i
+                                    class="fas fa-cancel"></i></button>
+                            <button class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash"></i></button>
+                            <button class="btn btn-sm btn-show {{ 'btn-success' if travel.is_show else 'btn-danger' }}"
+                                style="display: none;">
+                                {{ 'Yes' if travel.is_show else 'No' }}
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

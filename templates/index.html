@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="../static/index_table.js"></script>
+
+<table class="table table-hover" id="indexTable">
+    <thead>
+        <tr style="text-align:center">
+            <th>№</th>
+            <th>名前</th>
+            <th>案件名</th>
+            <th>時間</th>
+            <th>受注番号</th>
+            <th>製品番号</th>
+            <th>メニュー</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td style="text-align:center">{{order.id}}</td>
+            <td>{{order.user.realname}}</td>
+            <td>{{order.order}}</td>
+            <td style="text-align:center">{{" "}}</td>
+            <td style="text-align:center">{{order.order_number}}</td>
+            <td style="text-align:center">{{order.detail_number}}</td>
+            <td style="text-align:center">
+                <a class="btn btn-info btn-sm" href="{{ url_for('update_order', order_id=order.id) }}"><i
+                        class="fas fa-edit"></i></a>
+                <a class="btn btn-info btn-sm" href="{{ url_for('copy_order', order_id=order.id) }}"><i
+                        class="fas fa-copy"></i></a>
+                {% if current_user.admin == True %}
+                <form action="{{ url_for('hide_order', id=order.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-warning btn-sm">
+                        {% if order.is_hidden %}
+                        <i class="fas fa-eye-slash"></i>
+                        {% else %}
+                        <i class="fas fa-eye"></i>
+                        {% endif %}
+                    </button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}

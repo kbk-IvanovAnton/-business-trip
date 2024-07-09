@@ -1,0 +1,27 @@
+.col-id {
+    width: 5%;
+}
+
+.col-realname {
+    width: 15%;
+}
+
+.col-order {
+    width: 30%;
+}
+
+.col-time {
+    width: 10%;
+}
+
+.col-orderNumber {
+    width: 15%;
+}
+
+.col-detailNumber {
+    width: 10%;
+}
+
+.col-menu {
+    width: 15%;
+}

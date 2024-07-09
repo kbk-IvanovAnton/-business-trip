@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="../static/currency_table.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            {% include "sidebar.html" %}
+        </div>
+        <div class="col-9">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="mySwitch" name="darkmode" value="yes" checked>
+                <label class="form-check-label" for="mySwitch">Dark Mode</label>
+            </div>
+            <table class="table table-hover" id="currencyTable">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>Currency</th>
+                        <th>Prefix</th>
+                        <th>Suffix</th>
+                        <th>Code</th>
+                        <th>Num of digits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for currency in currencies %}
+                    <tr>
+                        <td>{{ currency.name }}</td>
+                        <td>{{ currency.prefix }}</td>
+                        <td>{{ currency.suffix }}</td>
+                        <td>{{ currency.code }}</td>
+                        <td>{{ currency.decimal }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

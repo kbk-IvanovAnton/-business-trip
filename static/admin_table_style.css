@@ -1,0 +1,25 @@
+.col-id {
+    width: 10%;
+}
+
+.col-username {
+    width: 30%;
+}
+
+.col-realname {
+    width: 30%;
+}
+
+.col-show {
+    width: 15%;
+}
+
+.col-menu {
+    width: 15%;
+}
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

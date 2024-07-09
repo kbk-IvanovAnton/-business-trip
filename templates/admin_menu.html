@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+<script src="../static/admin_table_fetch.js"></script>
+<script src="../static/admin_table_style.css"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            {% include "sidebar.html" %}
+        </div>
+        <div class="col-9">
+            <table class="table table-hover" id="adminTable">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th class="col-id">ID</th>
+                        <th class="col-realname">Show Name</th>
+                        <th class="col-username">Username</th>
+                        <th class="col-show">Show</th>
+                        <th class="col-menu">Menu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr data-id="{{ user.id }}" class="text-center">
+                        <td>{{user.id}}</td>
+                        <td class="view-mode">{{user.realname}}</td>
+                        <td class="view-mode username-cell">{{user.username}}</td>
+                        <td class="view-mode">
+                            <button class="btn btn-sm btn-show {{ 'btn-success' if user.is_show else 'btn-danger' }}"
+                                disabled>
+                                {% if user.is_show %}
+                                Yes
+                                {% else %}
+                                No
+                                {% endif %}
+                            </button>
+                        </td>
+                        <td>
+                            <button title="edit" class="btn btn-primary btn-sm btn-edit"><i
+                                    class="fas fa-edit"></i></button>
+                            <button class="btn btn-success btn-sm btn-save edit-mode" style="display: none;"><i
+                                    class="fas fa-save"></i></button>
+                            <button class="btn btn-secondary btn-sm btn-cancel edit-mode" style="display: none;"><i
+                                    class="fas fa-cancel"></i></button>
+                            <button class="btn btn-danger btn-sm btn-delete"><i class="fas fa-trash"></i></button>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" role="dialog"
+                aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            Do you really want to delete user <strong id="usernameToDelete"></strong>?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" id="confirmDeleteBtn">Yes</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
