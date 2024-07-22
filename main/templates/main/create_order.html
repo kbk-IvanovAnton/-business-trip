@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+{% extends "main/base.html" %}
+
+{% block content %}
+<form method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.user.label }}<br>
+        {{ form.user }}<br>
+        {% for error in form.user.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.order.label }}<br>
+        {{ form.order }}<br>
+        {% for error in form.order.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.order_number.label }}<br>
+        {{ form.order_number }}<br>
+        {% for error in form.order_number.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.detail_number.label }}<br>
+        {{ form.detail_number }}<br>
+        {% for error in form.detail_number.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
